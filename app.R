@@ -66,8 +66,8 @@ ui <- fluidPage(
       
       tabsetPanel(
         tabPanel("Table Show", 
-                 dataTableOutput("tableshow")),
-        tabPanel("Other fun", "contents2")
+                 dataTableOutput("tableshow"))
+        
       )
       
     )
@@ -80,7 +80,9 @@ server <- function(input, output) {
   
   datainput <- reactive({
     fcm <- read.FCS(input$file1$datapath)
-    fcm <- as.data.frame((exprs(fcm)))
+    
+    res <- as.data.frame((exprs(fcm)))
+    
   })
   
   output$tableshow <- renderDataTable({
